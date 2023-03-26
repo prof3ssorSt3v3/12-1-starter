@@ -182,3 +182,16 @@ function doSomething() {
     });
 }
 ```
+
+## QueryString Values
+
+If you are passing data through the QueryString you can use the `useSearchParams()` hook to read or set the values in the querystring.
+
+```jsx
+let [searchParams, setSearchParams] = useSearchParams();
+```
+
+The `searchParams` variable is an Object containing key value pairs from the current QueryString.
+
+The `setSearchParams()` variable is a method that you can call to update/replace the QueryString with new values. Calling it will update the current URL in the browser location bar. Doing this is like
+calling the `navigate()` method created by the `useNavigate()` hook.

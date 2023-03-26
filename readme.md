@@ -39,6 +39,17 @@ To navigate between Routes we can use either a `<Link>` or `<NavLink>`.
 
 The primary difference between the two, is that the `NavLink` will add a CSS class `active` to the anchor element if the current URL matches the `to` attribute value.
 
+By default, all the `to` attribute values will be relative to the current location as defined by the `Routes`.
+
+If you want to link to an external url, you can use an `<a href="">` element tag. Alternatively, you can use the `<Link>` component and pass an object to the `to` attribute.
+
+```jsx
+<Link to={{pathname: 'https://www.example.com/'}} target="_self">
+<Link to={{pathname: 'https://www.example.com/'}} target="_blank">
+```
+
+You can also add a `target` attribute to load the URL in the current tab or a new one.
+
 ## Nested Navigation and Components
 
 Using the Routes in the example above, we could add more routes inside of any of those components - `<Home>`, `<Other>`, and `<Dunno>` could also have a `<Routes>` with nested `<Route>` elements.

@@ -131,8 +131,54 @@ export default function Inner() {
 }
 ```
 
+## Route Params
+
+If you want a route that can handle changing values, we can use the `useParams` hook.
+
+Take this route as an example. The `/users/` part is hard-coded to match the url. The `:id` part is a variable. It will handle ANY value. So, we could have `/users/123` and `/users/456` and
+`/users/add` all as possible matches for this route.
+
+```jsx
+<Route path="/users/:id" element={<Users />} />
+```
+
+You can have a url that has multiple variables - `/thing/:action/static/:id/:type`. - `action`, `id`, and `type` are all variables.
+
+Then, inside the `<Users/>` component, when we need to know what the parameter value is, we use the `useParams` hook to get the values. This works just like `props`. We can destructure the params
+object that will be returned from the hook.
+
+```jsx
+export default function Users() {
+  const { id } = useParams();
+
+  return (
+    <div>
+      <p>Details for user {id}.</p>
+    </div>
+  );
+}
+```
+
 ## Programmatic Navigation
+
+The vast majority of times you will be using either a `<Link>` or a `<NavLink>` component for your links and routing.
+
+However, there will be occassions when you need a user to click on something and then do a few other things before changing the route url. To achieve this, we can use the `useNavigate` hook to
+programmatically navigate between routes.
 
 ```jsx
 const navigate = useNavigate();
+
+function doSomething() {
+  //upload some data to the server api
+  fetch(url)
+    .then((resp) => resp.json())
+    .then((data) => {
+      //data is the response from the api
+      navigate('/success');
+    })
+    .catch((err) => {
+      navigate('/failed');
+    });
+}
 ```

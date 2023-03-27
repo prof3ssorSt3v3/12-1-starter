@@ -1,0 +1,8 @@
+nav a {
+  font-size: 2rem;
+  margin-inline: 1rem;
+}
+
+nav a.active {
+  color: orangered;
+}
